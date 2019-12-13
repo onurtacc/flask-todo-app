@@ -20,8 +20,33 @@
             <input type="text" class="form-control" id="title" name="title" placeholder="Enter Todo..."><br>
             <button type="submit" class="btn btn-danger">Add</button>
         </div>
-        <hr>
     </form>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Status</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for todo in todo_list %}
+            <tr>
+                <th scope="row">{{ todo.id }}</th>
+                <td>{{ todo.title }}</td>
+                {% if todo.complete == False %}
+                    <td>Not Complete</td>
+                {% else %}
+                    <td>Completed</td>
+                {% endif %}
+                <td><a href="/complete/{{ todo.id }}" class="btn btn-danger">Update</a></td>
+                <td><a href="/delete/{{ todo.id }}" class="btn btn-danger">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 

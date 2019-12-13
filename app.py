@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
@@ -18,7 +18,17 @@ class Todo(db.Model):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    todo_list = Todo.query.all()
+    return render_template("index.html", todo_list=todo_list)
+
+
+@app.route("/add", methods=["POST"])
+def add():
+    title = request.form.get("title")
+    new_todo = Todo(title=title, complete=False)
+    db.session.add(new_todo)
+    db.session.commit()
+    return redirect(url_for("index"))
 
 
 if __name__ == "__main__":
