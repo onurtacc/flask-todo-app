@@ -21,32 +21,39 @@
             <button type="submit" class="btn btn-danger">Add</button>
         </div>
     </form>
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">Title</th>
-            <th scope="col">Status</th>
-            <th scope="col">Update</th>
-            <th scope="col">Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for todo in todo_list %}
+    {% if todo_list == [] %}
+        <div class="alert alert-warning" role="alert">
+            No Todo available
+        </div>
+    {% else %}
+        <table class="table">
+            <thead>
             <tr>
-                <th scope="row">{{ todo.id }}</th>
-                <td>{{ todo.title }}</td>
-                {% if todo.complete == False %}
-                    <td><span class="badge badge-danger">Not Complete</span></td>
-                {% else %}
-                    <td><span class="badge badge-success">Completed</span></td>
-                {% endif %}
-                <td><a href="/complete/{{ todo.id }}" class="btn btn-info">Update</a></td>
-                <td><a href="/delete/{{ todo.id }}" class="btn btn-danger">Delete</a></td>
+                <th scope="col">id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Status</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+
+            {% for todo in todo_list %}
+                <tr>
+                    <th scope="row">{{ todo.id }}</th>
+                    <td>{{ todo.title }}</td>
+                    {% if todo.complete == False %}
+                        <td><span class="badge badge-danger">Not Complete</span></td>
+                    {% else %}
+                        <td><span class="badge badge-success">Completed</span></td>
+                    {% endif %}
+                    <td><a href="/complete/{{ todo.id }}" class="btn btn-info">Update</a></td>
+                    <td><a href="/delete/{{ todo.id }}" class="btn btn-danger">Delete</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 </div>
 
 
