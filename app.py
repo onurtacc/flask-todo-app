@@ -31,6 +31,14 @@ def add():
     return redirect(url_for("index"))
 
 
+@app.route("/complete/<string:todo_id>")
+def complete(todo_id):
+    todo = Todo.query.filter_by(id=todo_id).first()
+    todo.complete = not todo.complete
+    db.session.commit()
+    return redirect(url_for("index"))
+
+
 if __name__ == "__main__":
     db.create_all()
     app.run(debug=True)

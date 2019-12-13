@@ -37,11 +37,11 @@
                 <th scope="row">{{ todo.id }}</th>
                 <td>{{ todo.title }}</td>
                 {% if todo.complete == False %}
-                    <td>Not Complete</td>
+                    <td><span class="badge badge-danger">Not Complete</span></td>
                 {% else %}
-                    <td>Completed</td>
+                    <td><span class="badge badge-success">Completed</span></td>
                 {% endif %}
-                <td><a href="/complete/{{ todo.id }}" class="btn btn-danger">Update</a></td>
+                <td><a href="/complete/{{ todo.id }}" class="btn btn-info">Update</a></td>
                 <td><a href="/delete/{{ todo.id }}" class="btn btn-danger">Delete</a></td>
             </tr>
         {% endfor %}
