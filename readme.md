@@ -69,6 +69,6 @@ The new feature (REST API with Swagger and tests) is implemented on branch `feat
 
 ## Repository Links
 
--Original Repository: https://github.com/Ryannn20/flask-todo-app
+-Original Repository: https://github.com/onurtacc/flask-todo-app
 
 -Forked with Enhancements: https://github.com/Ryannn20/flask-todo-app/tree/feature/rest-swaggerapi
