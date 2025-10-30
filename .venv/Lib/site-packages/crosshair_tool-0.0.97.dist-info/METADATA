@@ -1,0 +1,145 @@
+Metadata-Version: 2.4
+Name: crosshair-tool
+Version: 0.0.97
+Summary: Analyze Python code for correctness using symbolic execution.
+Home-page: https://github.com/pschanely/CrossHair
+Author: Phillip Schanely
+Author-email: pschanely+vE7F@gmail.com
+License: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: Topic :: Software Development :: Testing
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: packaging
+Requires-Dist: typing-inspect>=0.7.1
+Requires-Dist: typing_extensions>=3.10.0
+Requires-Dist: z3-solver>=4.13.0.0
+Requires-Dist: importlib_metadata>=4.0.0
+Requires-Dist: pygls>=1.0.0
+Requires-Dist: typeshed-client>=2.0.5
+Provides-Extra: dev
+Requires-Dist: autodocsumm<1,>=0.2.2; extra == "dev"
+Requires-Dist: black==25.9.0; extra == "dev"
+Requires-Dist: deal>=4.13.0; extra == "dev"
+Requires-Dist: icontract>=2.4.0; extra == "dev"
+Requires-Dist: isort==5.11.5; extra == "dev"
+Requires-Dist: mypy==1.18.1; extra == "dev"
+Requires-Dist: numpy==1.23.4; python_version < "3.12" and extra == "dev"
+Requires-Dist: numpy==1.26.0; (python_version >= "3.12" and python_version < "3.13") and extra == "dev"
+Requires-Dist: numpy==2.3.3; python_version >= "3.13" and extra == "dev"
+Requires-Dist: pre-commit~=2.20; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-xdist; extra == "dev"
+Requires-Dist: setuptools; extra == "dev"
+Requires-Dist: sphinx>=3.4.3; extra == "dev"
+Requires-Dist: sphinx-rtd-theme>=0.5.1; extra == "dev"
+Requires-Dist: rst2pdf>=0.102; extra == "dev"
+Requires-Dist: z3-solver==4.14.1.0; extra == "dev"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+<img src="https://raw.githubusercontent.com/pschanely/CrossHair/main/doc/source/logo-gray.png" width="5%" align="left">
+
+# CrossHair
+
+[![Join the chat on Discord](https://img.shields.io/discord/1346219754519789719?logo=discord&logoColor=white)](https://discord.gg/rUeTaYTWbb)
+[![Check status](https://github.com/pschanely/CrossHair/actions/workflows/check.yml/badge.svg?branch=main&event=push)](https://github.com/pschanely/CrossHair/actions?query=workflow%3ACheck+event%3Apush)
+[![Downloads](https://static.pepy.tech/badge/crosshair-tool/week)](https://pepy.tech/project/crosshair-tool)
+
+An analysis tool for Python that blurs the line between testing and
+type systems.
+
+> **_THE LATEST NEWS:_**
+Python's most popular property-based testing tool,
+[Hypothesis](https://hypothesis.readthedocs.io/en/latest/),
+now supports running CrossHair as an
+[optional backend](https://hypothesis.readthedocs.io/en/latest/strategies.html#alternative-backends)!
+
+
+If you have a function with
+[type annotations](https://www.python.org/dev/peps/pep-0484/) and add a
+contract
+[in a supported syntax](https://crosshair.readthedocs.io/en/latest/kinds_of_contracts.html),
+CrossHair will attempt to find counterexamples for you:
+
+![Animated GIF demonstrating the verification of a python function](https://raw.githubusercontent.com/pschanely/CrossHair/main/doc/source/duplicate_list.gif)
+
+CrossHair works by repeatedly calling your functions with symbolic inputs.
+It uses an [SMT solver] (a kind of theorem prover) to explore viable
+execution paths and find counterexamples for you.
+This is not a new idea; a Python approach was first described in
+[this paper].
+However, to my knowledge, CrossHair is the most complete implementation:
+it can use symbolic reasoning for the built-in types, user-defined classes, and much
+of the standard library.
+
+[SMT solver]: https://en.wikipedia.org/wiki/Satisfiability_modulo_theories
+[this paper]: https://hoheinzollern.files.wordpress.com/2008/04/seer1.pdf
+
+Try CrossHair right now, in your browser, at [crosshair-web.org]!
+
+CrossHair has [IDE integrations] for [VS Code], [PyCharm], and more.
+
+Finally, CrossHair can do more than check contracts. It can also
+[generate unit tests](https://crosshair.readthedocs.io/en/latest/cover.html)
+and
+[find behavioral differences](https://crosshair.readthedocs.io/en/latest/diff_behavior.html)
+between functions.
+
+[IDE integrations]: https://crosshair.readthedocs.io/en/latest/ide_integrations.html
+[VS Code]: https://marketplace.visualstudio.com/items?itemName=CrossHair.crosshair
+[PyCharm]: https://plugins.jetbrains.com/plugin/16266-crosshair-pycharm
+
+[crosshair-web.org]: https://crosshair-web.org
+
+Want to help?
+Sign up for
+[email](http://eepurl.com/hGTLRH)
+or
+[RSS](https://pschanely.github.io/feed.xml)
+updates.
+Star ⭐️ the repository.
+There are
+[other ways to help](https://crosshair.readthedocs.io/en/latest/how_can_i_help.html)
+too.
+
+## [Documentation](https://crosshair.readthedocs.io/en/latest)
+
+* [Introduction](https://crosshair.readthedocs.io/en/latest/introduction.html)
+* [Get Started](https://crosshair.readthedocs.io/en/latest/get_started.html)
+* [The Details: Contracts](https://crosshair.readthedocs.io/en/latest/contracts.html)
+* [The Details: cover](https://crosshair.readthedocs.io/en/latest/cover.html)
+* [The Details: diffbehavior](https://crosshair.readthedocs.io/en/latest/diff_behavior.html)
+* [Kinds of Contracts](https://crosshair.readthedocs.io/en/latest/kinds_of_contracts.html)
+* [Hints for Your Classes](https://crosshair.readthedocs.io/en/latest/hints_for_your_classes.html)
+* [IDE Integrations](https://crosshair.readthedocs.io/en/latest/ide_integrations.html)
+* [Case Studies](https://crosshair.readthedocs.io/en/latest/case_studies.html)
+* [Limitations](https://crosshair.readthedocs.io/en/latest/limitations.html)
+* [Plugins](https://crosshair.readthedocs.io/en/latest/plugins.html)
+* [How Does It Work?](https://crosshair.readthedocs.io/en/latest/how_does_it_work.html)
+* [How Can I Help?](https://crosshair.readthedocs.io/en/latest/how_can_i_help.html)
+* [Related Work](https://crosshair.readthedocs.io/en/latest/related_work.html)
+* [Contributing](https://crosshair.readthedocs.io/en/latest/contributing.html)
+* [Changelog](https://crosshair.readthedocs.io/en/latest/changelog.html)

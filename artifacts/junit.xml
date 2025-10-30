@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="5" time="49.388" timestamp="2025-10-30T11:24:46.412652" hostname="AbedPC"><properties><property name="hypothesis-statistics-tests/test_api_properties.py::test_create_list_roundtrip" value="dGVzdHMvdGVzdF9hcGlfcHJvcGVydGllcy5weTo6dGVzdF9jcmVhdGVfbGlzdF9yb3VuZHRyaXA6CgogIC0gZHVyaW5nIGdlbmVyYXRlIHBoYXNlICgyLjcyIHNlY29uZHMpOgogICAgLSBUeXBpY2FsIHJ1bnRpbWVzOiB+IDAtMjcgbXMsIG9mIHdoaWNoIH4gMC00IG1zIGluIGRhdGEgZ2VuZXJhdGlvbgogICAgLSAxMDAgcGFzc2luZyBleGFtcGxlcywgMCBmYWlsaW5nIGV4YW1wbGVzLCAxOCBpbnZhbGlkIGV4YW1wbGVzCgogIC0gU3RvcHBlZCBiZWNhdXNlIHNldHRpbmdzLm1heF9leGFtcGxlcz0xMDA=" /></properties><testcase classname="tests.test_api_properties" name="test_home_ui_loads" time="0.019" /><testcase classname="tests.test_api_properties" name="test_create_list_roundtrip" time="2.750" /><testcase classname="tests.test_api_properties" name="test_negative_inputs" time="0.018"><failure message="assert 201 in (400, 422)&#10; +  where 201 = &lt;Response streamed [201 CREATED]&gt;.status_code">client = &lt;FlaskClient &lt;Flask 'app'&gt;&gt;
+
+    def test_negative_inputs(client):
+        # Empty title
+        r = client.post("/api/todos", json={"title": ""})
+        assert r.status_code in (400, 422)
+    
+        # Excessively long title
+        r = client.post("/api/todos", json={"title": "x" * 200})
+&gt;       assert r.status_code in (400, 422)
+E       assert 201 in (400, 422)
+E        +  where 201 = &lt;Response streamed [201 CREATED]&gt;.status_code
+
+tests\test_api_properties.py:43: AssertionError</failure></testcase><testcase classname="tests.test_contracts" name="test_contract_smoke" time="0.001" /><testcase classname="tests.test_ui_playwright" name="test_add_todo_and_screenshot" time="45.524" /></testsuite></testsuites>
